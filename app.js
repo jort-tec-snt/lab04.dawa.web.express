@@ -17,6 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 const mainRoutes = require("./routes/mainRoutes");
 app.use("/", mainRoutes);
 
+// Middleware 404
+app.use((req, res) => {
+  res.status(404).render("notFound", {
+    url: req.originalUrl
+  });
+});
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
