@@ -3,14 +3,14 @@ const path = require("path");
 
 const app = express();
 
-// Motor de vistas
+// Configuración del motor de vistas
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
 
-// Procesar formularios
+// Procesar datos enviados desde formularios
 app.use(express.urlencoded({ extended: true }));
 
 // Rutas
