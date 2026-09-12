@@ -3,24 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title><%= title %></title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    >
+
     <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
 
-    <h1>Acerca de</h1>
+<nav>
+    <div class="nav-wrapper container">
+        <a href="/" class="brand-logo">DAWA</a>
 
-    <p>
-        Proyecto desarrollado con Node.js,
-        Express y EJS.
-    </p>
+        <ul class="right">
+            <li><a href="/">Inicio</a></li>
+            <li class="active"><a href="/about">Acerca de</a></li>
+            <li><a href="/contact">Contacto</a></li>
+            <li><a href="/admin">Administración</a></li>
+        </ul>
+    </div>
+</nav>
 
-    <nav>
-        <a href="/">Inicio</a>
-        <a href="/contact">Contacto</a>
-        <a href="/admin">Administración</a>
-    </nav>
+<main class="container">
+
+    <div class="section">
+
+        <h3>Acerca del proyecto</h3>
+
+        <div class="card">
+
+            <div class="card-content">
+
+                <span class="card-title">
+                    Laboratorio Semana 04
+                </span>
+
+                <p>
+                    Aplicación desarrollada utilizando Node.js,
+                    Express, EJS y Materialize CSS.
+                </p>
+
+                <br>
+
+                <p>
+                    El proyecto implementa rutas, controladores,
+                    vistas dinámicas y procesamiento de formularios.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+</script>
 
 </body>
 </html>

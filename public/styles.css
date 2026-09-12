@@ -1,0 +1,25 @@
+body {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+main {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+nav .brand-logo {
+    font-weight: 500;
+}
+
+.card {
+    border-radius: 8px;
+}
+
+.admin-actions {
+    margin: 30px 0;
+}
+
+.collection-item {
+    padding: 20px !important;
+}

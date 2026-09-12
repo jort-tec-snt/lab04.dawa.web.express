@@ -1,61 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><%= title %></title>
 
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    >
+
     <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
 
-    <h1>Panel de Administración</h1>
+<nav>
+    <div class="nav-wrapper container">
+        <a href="/" class="brand-logo">DAWA</a>
 
-    <p>Mensajes recibidos desde el formulario de contacto.</p>
-
-    <a href="/contact">Nuevo mensaje</a>
-    <a href="/">Inicio</a>
-
-    <hr>
-
-    <% if (messages.length === 0) { %>
-
-        <p>No hay mensajes registrados.</p>
-
-    <% } else { %>
-
-        <h2>Mensajes recibidos</h2>
-
-        <ul>
-
-            <% messages.forEach(message => { %>
-
-                <li>
-                    <strong>Nombre:</strong>
-                    <%= message.nombre %>
-
-                    <br>
-
-                    <strong>Correo:</strong>
-                    <%= message.email %>
-
-                    <br>
-
-                    <strong>Mensaje:</strong>
-                    <%= message.mensaje %>
-                </li>
-
-                <hr>
-
-            <% }) %>
-
+        <ul class="right">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/about">Acerca de</a></li>
+            <li><a href="/contact">Contacto</a></li>
+            <li class="active"><a href="/admin">Administración</a></li>
         </ul>
+    </div>
+</nav>
 
-    <% } %>
+<main class="container">
+
+    <div class="section">
+
+        <h3 class="center-align">
+            Panel de Administración
+        </h3>
+
+        <p class="center-align grey-text text-darken-1">
+            Mensajes recibidos desde el formulario de contacto.
+        </p>
+
+        <div class="center-align admin-actions">
+
+            <a
+                href="/contact"
+                class="btn waves-effect waves-light"
+            >
+                Nuevo mensaje
+            </a>
+
+        </div>
+
+        <% if (messages.length === 0) { %>
+
+            <div class="card-panel yellow lighten-4 center-align">
+
+                <span>
+                    No hay mensajes registrados.
+                </span>
+
+            </div>
+
+        <% } else { %>
+
+            <ul class="collection">
+
+                <% messages.forEach(message => { %>
+
+                    <li class="collection-item">
+
+                        <h6>
+                            <strong><%= message.nombre %></strong>
+                        </h6>
+
+                        <p>
+                            <strong>Correo:</strong>
+                            <%= message.email %>
+                        </p>
+
+                        <p>
+                            <strong>Mensaje:</strong>
+                            <%= message.mensaje %>
+                        </p>
+
+                    </li>
+
+                <% }) %>
+
+            </ul>
+
+        <% } %>
+
+    </div>
+
+</main>
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+</script>
 
 </body>
-
 </html>
