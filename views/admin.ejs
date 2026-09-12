@@ -1,104 +1,56 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title><%= title %></title>
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    >
-
-    <link rel="stylesheet" href="/styles.css">
-</head>
-
+<%- include("partials/head", { title }) %>
 <body>
+<%- include("partials/navigation", { active: "admin" }) %>
 
-<nav>
-    <div class="nav-wrapper container">
-        <a href="/" class="brand-logo">DAWA</a>
-
-        <ul class="right">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/about">Acerca de</a></li>
-            <li><a href="/contact">Contacto</a></li>
-            <li class="active"><a href="/admin">Administración</a></li>
-        </ul>
-    </div>
-</nav>
-
-<main class="container">
-
-    <div class="section">
-
-        <h3 class="center-align">
-            Panel de Administración
-        </h3>
-
-        <p class="center-align grey-text text-darken-1">
-            Mensajes recibidos desde el formulario de contacto.
-        </p>
-
-        <div class="center-align admin-actions">
-
-            <a
-                href="/contact"
-                class="btn waves-effect waves-light"
-            >
+<main>
+    <div class="app-container">
+        <header class="page-heading">
+            <div>
+                <span class="eyebrow">Centro de control</span>
+                <h1>Administración</h1>
+                <p>Seguimiento de consultas recibidas desde el canal de contacto.</p>
+            </div>
+            <a href="/contact" class="btn waves-effect waves-light">
+                <span class="material-symbols-outlined" aria-hidden="true">add</span>
                 Nuevo mensaje
             </a>
+        </header>
 
+        <div class="metric-grid">
+            <div class="metric-card"><span>Mensajes totales</span><span class="metric-value"><%= messages.length %></span></div>
+            <div class="metric-card"><span>Estado del canal</span><span class="status-tag status-disponible">Activo</span></div>
+            <div class="metric-card"><span>Almacenamiento</span><span class="metric-value">RAM</span></div>
         </div>
 
-        <% if (messages.length === 0) { %>
-
-            <div class="card-panel yellow lighten-4 center-align">
-
-                <span>
-                    No hay mensajes registrados.
-                </span>
-
+        <section class="catalog-panel">
+            <div class="catalog-toolbar">
+                <h2>Bandeja de mensajes</h2>
+                <span class="protocol-tag"><%= messages.length %> recibidos</span>
             </div>
 
-        <% } else { %>
-
-            <ul class="collection">
-
-                <% messages.forEach(message => { %>
-
-                    <li class="collection-item">
-
-                        <h6>
-                            <strong><%= message.nombre %></strong>
-                        </h6>
-
-                        <p>
-                            <strong>Correo:</strong>
-                            <%= message.email %>
-                        </p>
-
-                        <p>
-                            <strong>Mensaje:</strong>
-                            <%= message.mensaje %>
-                        </p>
-
-                    </li>
-
-                <% }) %>
-
-            </ul>
-
-        <% } %>
-
+            <% if (messages.length === 0) { %>
+                <div class="empty-state">
+                    <span class="empty-icon"><span class="material-symbols-outlined">inbox</span></span>
+                    <h3>No hay mensajes</h3>
+                    <p>Las nuevas consultas del formulario de contacto aparecerán en esta bandeja.</p>
+                </div>
+            <% } else { %>
+                <div class="message-list">
+                    <% messages.forEach(message => { %>
+                        <article class="message-item">
+                            <div class="message-meta">
+                                <strong><%= message.nombre %></strong>
+                                <a href="mailto:<%= message.email %>"><%= message.email %></a>
+                            </div>
+                            <p><%= message.mensaje %></p>
+                        </article>
+                    <% }) %>
+                </div>
+            <% } %>
+        </section>
     </div>
-
 </main>
 
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
-</script>
-
+<%- include("partials/footer") %>
 </body>
 </html>

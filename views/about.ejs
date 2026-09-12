@@ -1,71 +1,50 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title><%= title %></title>
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    >
-
-    <link rel="stylesheet" href="/styles.css">
-</head>
-
+<%- include("partials/head", { title }) %>
 <body>
+<%- include("partials/navigation", { active: "about" }) %>
 
-<nav>
-    <div class="nav-wrapper container">
-        <a href="/" class="brand-logo">DAWA</a>
-
-        <ul class="right">
-            <li><a href="/">Inicio</a></li>
-            <li class="active"><a href="/about">Acerca de</a></li>
-            <li><a href="/contact">Contacto</a></li>
-            <li><a href="/admin">Administración</a></li>
-        </ul>
-    </div>
-</nav>
-
-<main class="container">
-
-    <div class="section">
-
-        <h3>Acerca del proyecto</h3>
-
-        <div class="card">
-
-            <div class="card-content">
-
-                <span class="card-title">
-                    Laboratorio Semana 04
-                </span>
-
-                <p>
-                    Aplicación desarrollada utilizando Node.js,
-                    Express, EJS y Materialize CSS.
-                </p>
-
-                <br>
-
-                <p>
-                    El proyecto implementa rutas, controladores,
-                    vistas dinámicas y procesamiento de formularios.
-                </p>
-
+<main>
+    <div class="app-container">
+        <header class="page-heading">
+            <div>
+                <span class="eyebrow">Laboratorio semana 04</span>
+                <h1>Acerca del proyecto</h1>
+                <p>Aplicación web académica orientada al registro y consulta de dispositivos del ecosistema IoT.</p>
             </div>
+        </header>
 
+        <div class="content-grid">
+            <section class="content-panel">
+                <div class="panel-header">
+                    <span class="panel-icon"><span class="material-symbols-outlined">hub</span></span>
+                    <div><h2>DAWA IoT</h2><p>Catálogo de tecnología conectada</p></div>
+                </div>
+                <div class="panel-content">
+                    <p class="lead-text">Una interfaz para organizar equipos por categoría, fabricante, protocolo de comunicación, estado y precio.</p>
+                    <p>El proyecto aplica una arquitectura basada en rutas, controladores y vistas dinámicas. Los formularios procesan información en el servidor y actualizan el contenido renderizado con EJS.</p>
+                    <div class="tech-stack" aria-label="Tecnologías utilizadas">
+                        <span class="tech-chip">Node.js</span>
+                        <span class="tech-chip">Express</span>
+                        <span class="tech-chip">EJS</span>
+                        <span class="tech-chip">Materialize CSS</span>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="info-panel">
+                <div class="panel-header"><h2>Arquitectura</h2></div>
+                <div class="panel-content">
+                    <ul class="info-list">
+                        <li><span class="material-symbols-outlined">route</span><div><strong>Rutas</strong><span>Navegación y endpoints</span></div></li>
+                        <li><span class="material-symbols-outlined">settings</span><div><strong>Controladores</strong><span>Lógica de la aplicación</span></div></li>
+                        <li><span class="material-symbols-outlined">web</span><div><strong>Vistas EJS</strong><span>Contenido dinámico</span></div></li>
+                        <li><span class="material-symbols-outlined">database</span><div><strong>Memoria temporal</strong><span>Datos durante la ejecución</span></div></li>
+                    </ul>
+                </div>
+            </aside>
         </div>
-
     </div>
-
 </main>
 
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
-</script>
-
+<%- include("partials/footer") %>
 </body>
 </html>

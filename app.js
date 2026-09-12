@@ -10,12 +10,16 @@ app.set("views", path.join(__dirname, "views"));
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
 
-// Procesar datos enviados desde formularios
+// Procesar formularios
 app.use(express.urlencoded({ extended: true }));
 
-// Rutas
+// Rutas principales
 const mainRoutes = require("./routes/mainRoutes");
 app.use("/", mainRoutes);
+
+// Rutas de dispositivos IoT
+const deviceRoutes = require("./routes/deviceRoutes");
+app.use("/devices", deviceRoutes);
 
 // Middleware 404
 app.use((req, res) => {

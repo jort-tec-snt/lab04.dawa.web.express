@@ -1,0 +1,36 @@
+<header class="site-header">
+    <nav class="site-nav" aria-label="Navegación principal">
+        <div class="nav-wrapper app-container">
+            <a href="/" class="brand-logo" aria-label="DAWA IoT, inicio">
+                <span class="brand-mark" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span>
+                </span>
+                <span>DAWA <strong>IoT</strong></span>
+            </a>
+
+            <a href="#" data-target="mobile-menu" class="sidenav-trigger" aria-label="Abrir menú">
+                <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            </a>
+
+            <ul class="right hide-on-med-and-down desktop-nav">
+                <li class="<%= active === 'home' ? 'active' : '' %>"><a href="/">Inicio</a></li>
+                <li class="<%= active === 'devices' ? 'active' : '' %>"><a href="/devices">Catálogo</a></li>
+                <li class="<%= active === 'about' ? 'active' : '' %>"><a href="/about">Proyecto</a></li>
+                <li class="<%= active === 'contact' ? 'active' : '' %>"><a href="/contact">Contacto</a></li>
+                <li class="<%= active === 'admin' ? 'active' : '' %>"><a href="/admin">Administración</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-menu">
+        <li class="sidenav-brand">
+            <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+            <span>DAWA <strong>IoT</strong></span>
+        </li>
+        <li class="<%= active === 'home' ? 'active' : '' %>"><a href="/"><span class="material-symbols-outlined">home</span>Inicio</a></li>
+        <li class="<%= active === 'devices' ? 'active' : '' %>"><a href="/devices"><span class="material-symbols-outlined">devices</span>Catálogo</a></li>
+        <li class="<%= active === 'about' ? 'active' : '' %>"><a href="/about"><span class="material-symbols-outlined">hub</span>Proyecto</a></li>
+        <li class="<%= active === 'contact' ? 'active' : '' %>"><a href="/contact"><span class="material-symbols-outlined">mail</span>Contacto</a></li>
+        <li class="<%= active === 'admin' ? 'active' : '' %>"><a href="/admin"><span class="material-symbols-outlined">admin_panel_settings</span>Administración</a></li>
+    </ul>
+</header>

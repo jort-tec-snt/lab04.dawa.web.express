@@ -1,0 +1,133 @@
+<%- include("partials/head", { title }) %>
+<body>
+<%- include("partials/navigation", { active: "devices" }) %>
+
+<main>
+    <div class="app-container">
+        <header class="page-heading">
+            <div>
+                <span class="eyebrow">Inventario técnico</span>
+                <h1>Dispositivos IoT</h1>
+                <p>Catálogo de equipos conectados con sus datos de integración y disponibilidad.</p>
+            </div>
+            <div class="count-badge">
+                <span class="material-symbols-outlined" aria-hidden="true">memory</span>
+                <%= devices.length %> <%= devices.length === 1 ? "dispositivo" : "dispositivos" %>
+            </div>
+        </header>
+
+        <div class="catalog-layout">
+            <section class="form-panel" id="register">
+                <div class="panel-header">
+                    <span class="panel-icon"><span class="material-symbols-outlined">add_circle</span></span>
+                    <div>
+                        <h2>Nuevo dispositivo</h2>
+                        <p>Ficha técnica del equipo</p>
+                    </div>
+                </div>
+
+                <form action="/devices" method="POST" class="panel-content">
+                    <div class="input-field">
+                        <span class="material-symbols-outlined prefix">memory</span>
+                        <input id="nombre" name="nombre" type="text" maxlength="80" required>
+                        <label for="nombre">Nombre del dispositivo</label>
+                    </div>
+
+                    <div class="input-field">
+                        <span class="material-symbols-outlined prefix">category</span>
+                        <input id="categoria" name="categoria" type="text" maxlength="60" required>
+                        <label for="categoria">Categoría</label>
+                    </div>
+
+                    <div class="input-field">
+                        <span class="material-symbols-outlined prefix">factory</span>
+                        <input id="fabricante" name="fabricante" type="text" maxlength="60" required>
+                        <label for="fabricante">Fabricante</label>
+                    </div>
+
+                    <div class="input-field">
+                        <span class="material-symbols-outlined prefix">wifi_tethering</span>
+                        <input id="protocolo" name="protocolo" type="text" maxlength="40" placeholder="MQTT, Zigbee, Wi-Fi..." required>
+                        <label for="protocolo" class="active">Protocolo</label>
+                    </div>
+
+                    <div class="input-field">
+                        <select id="estado" name="estado" required>
+                            <option value="" disabled selected>Seleccione estado</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Agotado">Agotado</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                        </select>
+                        <label for="estado">Estado</label>
+                    </div>
+
+                    <div class="input-field">
+                        <span class="material-symbols-outlined prefix">payments</span>
+                        <input id="precio" name="precio" type="number" step="0.01" min="0" required>
+                        <label for="precio">Precio (S/)</label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn waves-effect waves-light">
+                            <span class="material-symbols-outlined" aria-hidden="true">add</span>
+                            Agregar al catálogo
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="catalog-panel">
+                <div class="catalog-toolbar">
+                    <h2>Inventario registrado</h2>
+                    <div class="protocol-key" aria-label="Protocolos habituales">
+                        <span>MQTT</span><span>Zigbee</span><span>Wi-Fi</span>
+                    </div>
+                </div>
+
+                <% if (devices.length === 0) { %>
+                    <div class="empty-state">
+                        <span class="empty-icon"><span class="material-symbols-outlined">inventory_2</span></span>
+                        <h3>El catálogo está vacío</h3>
+                        <p>Los dispositivos registrados aparecerán aquí con su protocolo, estado y precio.</p>
+                    </div>
+                <% } else { %>
+                    <div class="catalog-table-wrap">
+                        <table class="catalog-table">
+                            <thead>
+                                <tr>
+                                    <th>Dispositivo</th>
+                                    <th>Categoría</th>
+                                    <th>Fabricante</th>
+                                    <th>Protocolo</th>
+                                    <th>Estado</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% devices.forEach(device => { %>
+                                    <tr>
+                                        <td>
+                                            <div class="device-name">
+                                                <span class="device-avatar"><span class="material-symbols-outlined">memory</span></span>
+                                                <%= device.nombre %>
+                                            </div>
+                                        </td>
+                                        <td><%= device.categoria %></td>
+                                        <td><%= device.fabricante %></td>
+                                        <td><span class="protocol-tag"><%= device.protocolo %></span></td>
+                                        <td><span class="status-tag status-<%= device.estado.toLowerCase() %>"><%= device.estado %></span></td>
+                                        <td><span class="price">S/ <%= device.precio %></span></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% } %>
+            </section>
+        </div>
+    </div>
+</main>
+
+<%- include("partials/footer") %>
+</body>
+</html>
