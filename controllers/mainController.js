@@ -1,3 +1,6 @@
+// "Base de datos" temporal en memoria
+const messages = [];
+
 const home = (req, res) => {
   res.render("home", { title: "Inicio" });
 };
@@ -13,16 +16,27 @@ const contact = (req, res) => {
 const saveContact = (req, res) => {
   const { nombre, email, mensaje } = req.body;
 
-  console.log("Nuevo mensaje recibido:");
+  // Guardar mensaje en memoria
+  messages.push({
+    nombre,
+    email,
+    mensaje
+  });
+
+  console.log("Nuevo mensaje almacenado:");
   console.log("Nombre:", nombre);
   console.log("Correo:", email);
   console.log("Mensaje:", mensaje);
 
-  res.redirect("/contact");
+  // Después de guardar, mostrar panel administrativo
+  res.redirect("/admin");
 };
 
 const admin = (req, res) => {
-  res.render("admin", { title: "Administración" });
+  res.render("admin", {
+    title: "Administración",
+    messages
+  });
 };
 
 module.exports = {
